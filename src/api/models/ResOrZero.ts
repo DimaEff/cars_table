@@ -1,0 +1,1 @@
+export type ResOrZero<T> = T | 0

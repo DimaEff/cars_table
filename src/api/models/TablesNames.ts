@@ -1,0 +1,1 @@
+export type TablesNames = 'company' | 'cars' | 'points' | 'events' | 'users'
