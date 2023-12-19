@@ -1,4 +1,4 @@
-import reloadIcon from '../../assets/ReloadIcon.png'
+import refreshIcon from '../../assets/refreshIcon.svg'
 import {css, keyframes} from "@emotion/css";
 
 const Loader = () => {
@@ -16,7 +16,7 @@ const Loader = () => {
     animation: ${rotateKeyframes} 2s linear infinite;
   `;
     return (
-        <img src={reloadIcon} className={css`
+        <img src={refreshIcon} className={css`
             animation: ${rotateStyle} 2s linear infinite;
         `}/>
     );

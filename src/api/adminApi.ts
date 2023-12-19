@@ -12,7 +12,7 @@ adminInstance.interceptors.response.use((d) => d, (e) => {
     console.error(e)
 })
 
-export const getSettings = async () => (await adminInstance.get<SettingsDto>('get_settings')).data
+export const getSettings = async () => (await adminInstance.get<SettingsDto>('/get_settings')).data
 
 export interface CreateCompanyDto {
     company_name: string

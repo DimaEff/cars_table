@@ -5,6 +5,7 @@ import {css} from "@emotion/css";
 import {Table, TableHeaderCell, TableHeaderRow, TableRow} from "./components/Table";
 import Typography from "./components/Typography/Typography.tsx";
 import {IconButton} from "./components/Button";
+import CarsTable from "./components/CarsTable/CarsTable.tsx";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             flex-direction: column;
             gap: 8px;
         `}>
+            {data !== undefined && <CarsTable cars={data.cars}/>}
             <Table>
                 <TableHeaderRow tableName={'Автомобили'}>
                     <TableHeaderCell>

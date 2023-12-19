@@ -16,7 +16,9 @@ const TableRow: FC<PropsWithChildren<TableRowProps>> = ({children, leftActionSlo
         `}>
             <div className={css`
                 position: absolute;
-                left: -30px;
+                left: -20px;
+                top: 50%;
+                transform: translate(0, -50%);
             `}>
                 {leftActionSlot}
             </div>
