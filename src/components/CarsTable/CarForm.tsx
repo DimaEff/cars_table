@@ -1,13 +1,15 @@
 import * as z from "zod";
 import {Controller, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {Input, Select} from "../Input";
-import {FC} from "react";
+import {Input} from "../Input";
+import {FC, useCallback, useMemo} from "react";
 import {IconDto} from "../../api/models/IconDto.ts";
 import CarIcon from "./CarIcon.tsx";
 import {TableRow} from "../Table";
 import {IconButton} from "../Button";
 import checkIcon from '../../assets/checkIcon.svg'
+import Select from "react-select";
+import {css} from "@emotion/css";
 
 const formSchema = z.object({
     car_name: z.string(),
@@ -26,9 +28,15 @@ const CarForm: FC<CarFormProps> = ({icons, handleCreateCar}) => {
         resolver: zodResolver(formSchema),
     })
 
+    const options = useMemo(() => icons.map(i => ({
+        value: i.url,
+        label: <div className={css`padding-left: 32px`}><CarIcon iconUrl={i.url} size={16}/></div>
+    })), [])
+    const getSelectValue = useCallback((value: string) => options.find(o => o.value === value), [options])
+
     return (
         <TableRow leftActionSlot={<IconButton onClick={handleSubmit(handleCreateCar)}><img
-            src={checkIcon}/></IconButton>}>
+            src={checkIcon}/></IconButton>} withoutDivider>
             <td>
                 <Input {...register('car_name')} errorMessage={errors.car_name?.message} placeholder={'Название'}/>
             </td>
@@ -37,15 +45,11 @@ const CarForm: FC<CarFormProps> = ({icons, handleCreateCar}) => {
                     control={control}
                     name={'icon'}
                     render={
-                        ({field, fieldState: {error}}) => <Select value={field.value}
-                                                                  onChange={v => field.onChange(v.currentTarget.value)}
-                                                                  errorMessage={error?.message}>
-                            {icons.map(i =>
-                                <option value={i.url} key={i.icon_id}>
-                                    <CarIcon iconUrl={i.url}/>
-                                </option>
-                            )}
-                        </Select>
+                        ({field, fieldState: {error}}) => <Select className={css`
+                            width: 150px;
+                        `} ref={field.ref} value={getSelectValue(field.value) ?? null}
+                                                                  onChange={o => field.onChange(o?.value)}
+                                                                  options={options}/>
                     }
                 />
             </td>

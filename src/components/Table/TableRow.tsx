@@ -4,9 +4,10 @@ import {MAIN_COLOR} from "../../constants.ts";
 
 interface TableRowProps {
     leftActionSlot?: React.ReactNode
+    withoutDivider?: boolean
 }
 
-const TableRow: FC<PropsWithChildren<TableRowProps>> = ({children, leftActionSlot}) => {
+const TableRow: FC<PropsWithChildren<TableRowProps>> = ({children, leftActionSlot, withoutDivider}) => {
     return (
         <>
             <tr className={css`
@@ -28,14 +29,14 @@ const TableRow: FC<PropsWithChildren<TableRowProps>> = ({children, leftActionSlo
                 `}>
                     {leftActionSlot}
                 </div>
-                <div className={css`
+                {!withoutDivider && <div className={css`
                     position: absolute;
                     bottom: 10px;
                     height: 12px;
                     width: 100%;
                     border-radius: 4px;
                     background-color: ${MAIN_COLOR};
-                `}/>
+                `}/>}
                 {children}
             </tr>
         </>

@@ -3,13 +3,14 @@ import {css} from "@emotion/css";
 
 interface CarIconProps {
     iconUrl: string
+    size?: number
 }
 
-const CarIcon: FC<CarIconProps> = ({iconUrl}) => {
+const CarIcon: FC<CarIconProps> = ({iconUrl, size}) => {
     return (
         <img className={css`
             transform: rotate(90deg);
-            width: 35px;
+            max-width: ${size ?? 30}px;
         `} src={iconUrl}/>
     );
 };
