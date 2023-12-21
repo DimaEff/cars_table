@@ -6,6 +6,7 @@ import CarsTable from "./components/CarsTable/CarsTable.tsx";
 import {ControlPointsTable} from "./components/ControlPointsTable";
 import {EventsTable} from "./components/EventsTable";
 import UsersTable from "./components/UsersTable/UsersTable.tsx";
+import {Company} from "./components/Company";
 
 function App() {
     const {data} = useQuery(QUERIES_KEYS.GET_SETTINGS, getSettings);
@@ -18,6 +19,7 @@ function App() {
                 gap: 8px;
             `}
         >
+            {data !== undefined && <Company company={data.company} />}
             {data !== undefined && <CarsTable cars={data.cars} icons={data.icons}/>}
             {data !== undefined && <ControlPointsTable points={data.points}/>}
             {data !== undefined && <EventsTable events={data.events} cars={data.cars} points={data.points}

@@ -8,5 +8,5 @@ export const typographyColors: Record<TypographyColors, string> = {
 
 export const fontVariants: Record<TypographyFonts, string> = {
     main: "16px",
-    sm: "10px"
+    sm: "12px"
 }
