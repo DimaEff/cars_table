@@ -71,3 +71,16 @@ export const createEvent = async (createEventDto: CreateEventDto) => (await admi
 
 export type SaveEventDto = CreateEventDto & { event_id: string }
 export const saveEvent = async (saveEventDto: SaveEventDto) => (await adminInstance.post('/save_event', null, {params: saveEventDto})).data
+
+
+interface CreateUserDto {
+    user_email: string
+    user_role: string
+}
+
+export const createUser = async (dto: CreateUserDto) => (await adminInstance.post('/create_user', null, {params: dto})).data
+
+type SaveUserDto = CreateUserDto & { id: string }
+export const saveUser = async (dto: SaveUserDto) => (await adminInstance.post('/save_user', null, {params: dto})).data
+
+export const deleteUser = async (user_id: string) => (await adminInstance.delete('/delete_user', {params: {user_id}}))
