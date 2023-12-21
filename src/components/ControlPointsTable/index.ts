@@ -1,0 +1,1 @@
+export {default as ControlPointsTable} from './ControlPointsTable.tsx'

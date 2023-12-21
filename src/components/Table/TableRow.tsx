@@ -31,7 +31,7 @@ const TableRow: FC<PropsWithChildren<TableRowProps>> = ({children, leftActionSlo
                 </div>
                 {!withoutDivider && <div className={css`
                     position: absolute;
-                    bottom: 10px;
+                    bottom: 4px;
                     height: 12px;
                     width: 100%;
                     border-radius: 4px;

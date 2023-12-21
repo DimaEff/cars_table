@@ -8,7 +8,7 @@ import {IconDto} from "./IconDto.ts";
 export interface SettingsDto {
     company: ResOrZero<CompanyDto>
     cars: ResOrZero<CarDto[]>
-    point: ResOrZero<PointDto[]>
+    points: ResOrZero<PointDto[]>
     events: ResOrZero<EventDto[]>
     type_of_events: string[]
     icons: IconDto[]

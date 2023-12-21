@@ -1,19 +1,18 @@
 import {FC} from 'react';
-import {CarDto} from "../../api/models/CarDto.ts";
 import {TableCell, TableRow} from "../Table";
 import {IconButton} from "../Button";
 import closeIcon from '../../assets/closeIcon.svg'
 import {useQuery} from "react-query";
 import {QUERIES_KEYS} from "../../queriesKeys.ts";
-import {deleteCar} from "../../api/adminApi.ts";
-import CarIcon from "./CarIcon.tsx";
+import {deletePoint} from "../../api/adminApi.ts";
+import {PointDto} from "../../api/models/PointDto.ts";
 
 interface CarRowProps {
-    car: CarDto
+    point: PointDto
 }
 
-const CarRow: FC<CarRowProps> = ({car}) => {
-    const {isLoading, refetch} = useQuery(QUERIES_KEYS.DELETE_CAR(car.car_id), () => deleteCar(car.car_id), {
+const ControlPointRow: FC<CarRowProps> = ({point}) => {
+    const {isLoading, refetch} = useQuery(QUERIES_KEYS.DELETE_POINT(point.point_id), () => deletePoint(point.point_id), {
         refetchOnWindowFocus: false,
         enabled: false
     })
@@ -25,19 +24,16 @@ const CarRow: FC<CarRowProps> = ({car}) => {
                 </IconButton>
             }>
             <TableCell>
-                {car.name}
-            </TableCell>
-            <td>
-                <CarIcon iconUrl={car.pic}/>
-            </td>
-            <TableCell>
-                {car.imei}
+                {point.name}
             </TableCell>
             <TableCell>
-                {car.alter_imei}
+                {point.lat}
+            </TableCell>
+            <TableCell>
+                {point.radius}
             </TableCell>
         </TableRow>
     );
 };
 
-export default CarRow;
+export default ControlPointRow;
