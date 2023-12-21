@@ -1,23 +1,19 @@
 import refreshIcon from '../../assets/refreshIcon.svg'
 import {css, keyframes} from "@emotion/css";
 
-const Loader = () => {
-    const rotateKeyframes = keyframes`
+const rotateKeyframes = keyframes`
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  `;
+`;
 
-    // Применение стилей с использованием библиотеки @emotion/css
-    const rotateStyle = css`
-    animation: ${rotateKeyframes} 2s linear infinite;
-  `;
+const Loader = () => {
     return (
         <img src={refreshIcon} className={css`
-            animation: ${rotateStyle} 2s linear infinite;
+            animation: ${rotateKeyframes} 2s linear infinite;
         `}/>
     );
 };
