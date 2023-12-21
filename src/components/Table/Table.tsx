@@ -7,7 +7,6 @@ const Table: FC<PropsWithChildren> = ({children}) => {
             background-color: transparent;
             border: none;
             padding: 8px;
-            border-collapse: separate;
             border-spacing: 0;
         `}>
             {children}

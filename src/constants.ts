@@ -1,0 +1,1 @@
+export const MAIN_COLOR = 'rgb(7, 140, 117)'
