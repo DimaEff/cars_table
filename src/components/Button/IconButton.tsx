@@ -20,6 +20,11 @@ const IconButton: FC<PropsWithChildren<IconButtonProps>> = ({children, loading, 
                 border: none;
                 padding: 4px;
                 cursor: pointer;
+                width: 32px;
+                height: 32px;
+                &>img {
+                    width: 100%;
+                }
             `}
             {...props}
         >

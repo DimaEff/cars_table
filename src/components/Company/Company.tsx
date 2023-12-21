@@ -57,13 +57,11 @@ const Company: FC<CompanyProps> = ({company}) => {
         >
             <InfoSlot description={'имя компании'}
                       rightIconSlot={<div>
-                          <IconButton onClick={() => setEditMode(m => !m)}><img src={editIcon}/></IconButton>
-                          {editMode && <IconButton onClick={handleSaveCompany}><img src={checkIcon}/></IconButton>}
+                          <IconButton onClick={handleSaveCompany}><img src={checkIcon}/></IconButton>
                       </div>}>
-                {editMode ? <Input value={companyName} onChange={e => setCompanyName(e.currentTarget.value)}/> :
-                    <Typography color={'white'}>
-                        {company.name}
-                    </Typography>}
+                <Typography color={'white'}>
+                    {company.name}
+                </Typography>
             </InfoSlot>
 
             <InfoSlot description={'короткая ссылка'}
