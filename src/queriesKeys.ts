@@ -2,5 +2,6 @@ export const QUERIES_KEYS = {
     GET_SETTINGS: 'GET_SETTINGS',
     CREATE_CAR: 'CREATE_CAR',
     DELETE_CAR: (carId: string) => `DELETE_CAR_${carId}`,
-    DELETE_POINT: (carId: string) => `DELETE_POINT_${carId}`
+    DELETE_POINT: (pointId: string) => `DELETE_POINT_${pointId}`,
+    DELETE_EVENT: (eventId: string) => `DELETE_EVENT_${eventId}`
 }

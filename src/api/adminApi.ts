@@ -62,9 +62,9 @@ export const deleteEvent = async (event_id: string) => (await adminInstance.dele
 
 interface CreateEventDto {
     car_id: string
-    user_id: string
+    point_id: string
     event: 'IN' | 'OUT'
-    time_response_sec: number
+    time_response_sec?: number
 }
 
 export const createEvent = async (createEventDto: CreateEventDto) => (await adminInstance.post('/create_event', null, {params: createEventDto})).data
