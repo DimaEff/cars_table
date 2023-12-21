@@ -24,7 +24,6 @@ const IconButton: FC<PropsWithChildren<IconButtonProps>> = ({children, loading, 
             {...props}
         >
             {loading ? <Loader/> : children}
-            {}
         </button>
     );
 };

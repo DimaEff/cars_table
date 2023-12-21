@@ -7,6 +7,8 @@ import {IconButton} from "../Button";
 import {createCar} from "../../api/adminApi.ts";
 import {useQuery} from "react-query";
 import {QUERIES_KEYS} from "../../queriesKeys.ts";
+import addIcon from "../../assets/addIcon.svg"
+import {css} from "@emotion/css";
 
 const tableColumns = ['имя', 'иконка', 'imei', 'imei-2']
 
@@ -44,7 +46,9 @@ const CarsTable: FC<CarsTableProps> = ({cars, icons}) => {
                 {creatingMode && <CarForm icons={icons} handleCreateCar={handleCreateCar}/>}
                 </tbody>
             </Table>
-            <IconButton onClick={() => setCreatingMode(true)}>Add</IconButton>
+            <IconButton onClick={() => setCreatingMode(true)}><img src={addIcon} className={css`
+                width: 32px;
+            `}/></IconButton>
         </div>
     );
 };
