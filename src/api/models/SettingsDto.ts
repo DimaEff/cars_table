@@ -8,7 +8,7 @@ import {UserDto} from "./UserDto.ts";
 
 export interface SettingsDto {
     company: ResOrZero<CompanyDto>
-    users: ResOrZero<UserDto>
+    users: ResOrZero<UserDto[]>
     cars: ResOrZero<CarDto[]>
     points: ResOrZero<PointDto[]>
     events: ResOrZero<EventDto[]>

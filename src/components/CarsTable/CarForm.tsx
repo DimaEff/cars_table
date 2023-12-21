@@ -31,7 +31,7 @@ const CarForm: FC<CarFormProps> = ({icons, handleCreateCar}) => {
     const options = useMemo(() => icons.map(i => ({
         value: i.url,
         label: <div className={css`padding-left: 32px`}><CarIcon iconUrl={i.url} size={16}/></div>
-    })), [])
+    })), [icons])
     const getSelectValue = useCallback((value: string) => options.find(o => o.value === value), [options])
 
     return (
