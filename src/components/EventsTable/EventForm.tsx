@@ -9,6 +9,7 @@ import checkIcon from '../../assets/checkIcon.svg'
 import {CarDto} from "../../api/models/CarDto.ts";
 import {PointDto} from "../../api/models/PointDto.ts";
 import Select from "react-select";
+import {EVENTS_TYPES_NAMES} from "../../constants.ts";
 
 const formSchema = z.object({
     car_id: z.string(),
@@ -20,10 +21,11 @@ const formSchema = z.object({
 interface CarFormProps {
     cars: CarDto[]
     points: PointDto[]
+    typeOfEvents: string[]
     handleCreatePoint: (data: z.infer<typeof formSchema>) => Promise<void>
 }
 
-const ControlPointForm: FC<CarFormProps> = ({points, cars, handleCreatePoint}) => {
+const ControlPointForm: FC<CarFormProps> = ({points, cars, typeOfEvents, handleCreatePoint}) => {
     const {handleSubmit, register, formState: {errors}, control} = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
     })
@@ -34,7 +36,8 @@ const ControlPointForm: FC<CarFormProps> = ({points, cars, handleCreatePoint}) =
     const pointsOptions = useMemo(() => points.map(c => ({value: c.point_id, label: c.name})), [points])
     const getPointValueOption = useCallback((point_id: string | null) => carsOptions.find(c => c.value === point_id) ?? null, [pointsOptions, event])
 
-    const actionOptions = [{value: "IN", label: "ПРИХОД"}, {value: "OUT", label: "УБЫТИЕ"}]
+    // @ts-ignore
+    const actionOptions = useMemo(() => typeOfEvents.map(e => ({value: e, label: EVENTS_TYPES_NAMES[e]})), [typeOfEvents])
     const getActionValueOption = useCallback((event_type: string | null) => actionOptions.find(c => c.value === event_type) ?? null, [event])
 
     return (

@@ -18,7 +18,6 @@ const Input: FC<React.InputHTMLAttributes<HTMLInputElement> & InputProps> = forw
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 box-sizing: border-box;
-                height: 44.75px;
             `}/>
             {errorMessage !== undefined && <Typography fontVariant={'sm'} color={'error'}>{errorMessage}</Typography>}
         </div>

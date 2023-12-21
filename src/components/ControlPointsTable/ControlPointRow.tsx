@@ -27,7 +27,7 @@ const ControlPointRow: FC<CarRowProps> = ({point}) => {
                 {point.name}
             </TableCell>
             <TableCell>
-                {point.lat}
+                {point.address}
             </TableCell>
             <TableCell>
                 {point.radius}

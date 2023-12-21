@@ -9,14 +9,16 @@ import {deleteEvent, saveEvent, SaveEventDto} from "../../api/adminApi.ts";
 import {EventDto} from "../../api/models/EventDto.ts";
 import {CarDto} from "../../api/models/CarDto.ts";
 import {Option} from "../Input";
+import {EVENTS_TYPES_NAMES} from "../../constants.ts";
 
 interface EventRowProps {
     event: EventDto
     cars: CarDto[]
     points: PointDto[]
+    typeOfEvents: string[]
 }
 
-const EventRow: FC<EventRowProps> = ({event, cars, points}) => {
+const EventRow: FC<EventRowProps> = ({event, cars, points, typeOfEvents}) => {
     const {isLoading, refetch} = useQuery(QUERIES_KEYS.DELETE_EVENT(event.event_id), () => deleteEvent(event.event), {
         refetchOnWindowFocus: false,
         enabled: false
@@ -43,7 +45,8 @@ const EventRow: FC<EventRowProps> = ({event, cars, points}) => {
         await settingsQuery.refetch()
     }
 
-    const actionOptions = [{value: "IN", label: "ПРИХОД"}, {value: "OUT", label: "УБЫТИЕ"}]
+    // @ts-ignore
+    const actionOptions = useMemo(() => typeOfEvents.map(e => ({value: e, label: EVENTS_TYPES_NAMES[e]})), [typeOfEvents])
     const actionValueOption = useMemo(() => actionOptions.find(c => c.value === event.event) ?? null, [event])
     const handleChangeEventValue = async (o: Option) => {
         // @ts-ignore

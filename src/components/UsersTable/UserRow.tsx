@@ -7,12 +7,14 @@ import {UserDto} from "../../api/models/UserDto.ts";
 import {FC, useMemo} from "react";
 import {Option} from "../Input";
 import {saveUser} from "../../api/adminApi.ts";
+import {RoleDto} from "../../api/models/RoleDto.ts";
 
 interface UserRowProps {
     user: UserDto
+    roles: RoleDto[]
 }
 
-const UserRow: FC<UserRowProps> = ({user}) => {
+const UserRow: FC<UserRowProps> = ({user, roles}) => {
     const {isLoading, refetch} = useQuery(QUERIES_KEYS.DELETE_USER(user.user_id), {
         refetchOnWindowFocus: false,
         enabled: false
@@ -23,7 +25,7 @@ const UserRow: FC<UserRowProps> = ({user}) => {
         enabled: false,
     })
 
-    const rolesOptions = [{value: "admin", label: "Администратор"}, {value: "user", label: "Пользователь"}]
+    const rolesOptions = useMemo(() => roles.map(r => ({value: r.role, label: r.ru})), [roles])
     const roleValueOption = useMemo(() => rolesOptions.find(r => r.value === user.user_role) ?? null, [rolesOptions, user])
 
     const handleChangeUserRole = async (o: Option) => {

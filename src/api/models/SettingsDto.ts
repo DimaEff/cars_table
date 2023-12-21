@@ -5,6 +5,7 @@ import {PointDto} from "./PointDto.ts";
 import {EventDto} from "./EventDto.ts";
 import {IconDto} from "./IconDto.ts";
 import {UserDto} from "./UserDto.ts";
+import {RoleDto} from "./RoleDto.ts";
 
 export interface SettingsDto {
     company: ResOrZero<CompanyDto>
@@ -14,4 +15,5 @@ export interface SettingsDto {
     events: ResOrZero<EventDto[]>
     type_of_events: string[]
     icons: IconDto[]
+    roles: RoleDto[]
 }

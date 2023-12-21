@@ -4,4 +4,5 @@ export interface PointDto {
     lat: string;
     lng: string;
     radius: string;
+    address: string;
 }

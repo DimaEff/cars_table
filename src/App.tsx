@@ -20,8 +20,9 @@ function App() {
         >
             {data !== undefined && <CarsTable cars={data.cars} icons={data.icons}/>}
             {data !== undefined && <ControlPointsTable points={data.points}/>}
-            {data !== undefined && <EventsTable events={data.events} cars={data.cars} points={data.points}/>}
-            {data !== undefined && <UsersTable users={data.users}/>}
+            {data !== undefined && <EventsTable events={data.events} cars={data.cars} points={data.points}
+                                                typeOfEvents={data.type_of_events}/>}
+            {data !== undefined && <UsersTable users={data.users} roles={data.roles}/>}
         </div>
     );
 }

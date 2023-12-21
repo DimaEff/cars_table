@@ -14,9 +14,10 @@ const tableColumns = ['e-mail', 'полномочия']
 
 interface UsersTableProps {
     users: SettingsDto['users']
+    roles: SettingsDto['roles']
 }
 
-const UsersTable: FC<UsersTableProps> = ({users}) => {
+const UsersTable: FC<UsersTableProps> = ({users, roles}) => {
     const [creatingMode, setCreatingMode] = useState(false)
 
     const {refetch} = useQuery(QUERIES_KEYS.GET_SETTINGS, {
@@ -39,8 +40,8 @@ const UsersTable: FC<UsersTableProps> = ({users}) => {
                 </TableHeaderRow>
                 <tbody>
                 {users === 0 && <EmptyData/>}
-                {users !== 0 && users.map(u => <UserRow key={u.user_id} user={u}/>)}
-                {creatingMode && <UserForm handleCreateUser={handleCreateUser}/>}
+                {users !== 0 && users.map(u => <UserRow key={u.user_id} roles={roles} user={u}/>)}
+                {creatingMode && <UserForm handleCreateUser={handleCreateUser} roles={roles}/>}
                 </tbody>
             </Table>
             <IconButton onClick={() => setCreatingMode(true)}><img src={addIcon} className={css`

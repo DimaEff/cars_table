@@ -6,6 +6,7 @@ import {FC} from "react";
 import {TableRow} from "../Table";
 import {IconButton} from "../Button";
 import checkIcon from '../../assets/checkIcon.svg'
+import {css} from "@emotion/css";
 
 const formSchema = z.object({
     point_name: z.string(),
@@ -30,8 +31,13 @@ const ControlPointForm: FC<CarFormProps> = ({handleCreatePoint}) => {
                 <Input {...register('point_name')} errorMessage={errors.point_name?.message} placeholder={'Название'}/>
             </td>
             <td>
-                <Input {...register('lat', {valueAsNumber: true})} errorMessage={errors.lat?.message} placeholder={'lat'}/>
-                <Input {...register('lng', {valueAsNumber: true})} errorMessage={errors.lng?.message} placeholder={'lng'}/>
+                <div className={css`
+                     display: flex;
+                    gap: 4px;
+                `}>
+                    <Input {...register('lat', {valueAsNumber: true})} errorMessage={errors.lat?.message} placeholder={'lat'}/>
+                    <Input {...register('lng', {valueAsNumber: true})} errorMessage={errors.lng?.message} placeholder={'lng'}/>
+                </div>
             </td>
             <td>
                 <Input {...register('radius', {valueAsNumber: true})} errorMessage={errors.radius?.message}

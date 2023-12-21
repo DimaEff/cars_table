@@ -2,11 +2,12 @@ import * as z from "zod";
 import {Controller, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "../Input";
-import {FC, useCallback} from "react";
+import {FC, useCallback, useMemo} from "react";
 import {TableRow} from "../Table";
 import {IconButton} from "../Button";
 import checkIcon from '../../assets/checkIcon.svg'
 import Select from "react-select";
+import {RoleDto} from "../../api/models/RoleDto.ts";
 
 const formSchema = z.object({
     user_email: z.string(),
@@ -14,15 +15,16 @@ const formSchema = z.object({
 })
 
 interface CarFormProps {
+    roles: RoleDto[]
     handleCreateUser: (data: z.infer<typeof formSchema>) => Promise<void>
 }
 
-const UserForm: FC<CarFormProps> = ({handleCreateUser}) => {
+const UserForm: FC<CarFormProps> = ({roles, handleCreateUser}) => {
     const {handleSubmit, register, control, formState: {errors}} = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
     })
 
-    const rolesOptions = [{value: "admin", label: "Администратор"}, {value: "user", label: "Пользователь"}]
+    const rolesOptions = useMemo(() => roles.map(r => ({value: r.role, label: r.ru})), [roles])
     const getRoleValueOption = useCallback((user_role: string | null) => rolesOptions.find(r => r.value === user_role) ?? null, [rolesOptions])
 
     return (

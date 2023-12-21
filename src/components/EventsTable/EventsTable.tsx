@@ -16,9 +16,10 @@ interface EventsTableProps {
     events: SettingsDto['events']
     cars: SettingsDto['cars']
     points: SettingsDto['points']
+    typeOfEvents: SettingsDto['type_of_events']
 }
 
-const EventsTable: FC<EventsTableProps> = ({events, cars, points}) => {
+const EventsTable: FC<EventsTableProps> = ({events, cars, points, typeOfEvents}) => {
     const [creatingMode, setCreatingMode] = useState(false)
 
     const {refetch} = useQuery(QUERIES_KEYS.GET_SETTINGS, {
@@ -42,9 +43,13 @@ const EventsTable: FC<EventsTableProps> = ({events, cars, points}) => {
                 {events === 0 && <EmptyData/>}
                 {events !== 0 && cars !== 0 && points !== 0 && events.map(e => <EventRow key={e.event_id} event={e}
                                                                                          cars={cars}
-                                                                                         points={points}/>
+                                                                                         points={points}
+                                                                                         typeOfEvents={typeOfEvents}
+                    />
                 )}
-                {creatingMode && cars !== 0 && points !== 0 && <EventForm cars={cars} points={points} handleCreatePoint={handleCreatePoint}/>}
+                {creatingMode && cars !== 0 && points !== 0 &&
+                    <EventForm cars={cars} points={points} handleCreatePoint={handleCreatePoint}
+                               typeOfEvents={typeOfEvents}/>}
                 </tbody>
             </Table>
             <IconButton onClick={() => setCreatingMode(true)}><img src={addIcon} className={css`
