@@ -7,9 +7,10 @@ type IconButtonProps =
     Loading
     & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-const IconButton: FC<PropsWithChildren<IconButtonProps>> = ({children, loading, ...props}) => {
+const IconButton: FC<PropsWithChildren<IconButtonProps>> = ({children, loading, disabled, ...props}) => {
     return (
         <button
+            disabled={loading || disabled}
             className={css`
                 display: flex;
                 justify-content: center;

@@ -19,6 +19,9 @@ const TableRow: FC<PropsWithChildren<TableRowProps>> = ({children, leftActionSlo
                 left: -20px;
                 top: 50%;
                 transform: translate(0, -50%);
+                & img {
+                    width: 24px
+                }
             `}>
                 {leftActionSlot}
             </div>

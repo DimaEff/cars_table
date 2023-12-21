@@ -7,6 +7,7 @@ import closeIcon from '../../assets/closeIcon.svg'
 import {useQuery} from "react-query";
 import {QUERIES_KEYS} from "../../queriesKeys.ts";
 import {deleteCar} from "../../api/adminApi.ts";
+import CarIcon from "./CarIcon.tsx";
 
 interface CarRowProps {
     car: CarDto
@@ -28,10 +29,7 @@ const CarRow: FC<CarRowProps> = ({car}) => {
                 {car.name}
             </TableCell>
             <td>
-                <img className={css`
-                    transform: rotate(90deg);
-                    width: 35px;
-                `} src={car.pic}/>
+                <CarIcon iconUrl={car.pic}/>
             </td>
             <TableCell>
                 {car.imei}

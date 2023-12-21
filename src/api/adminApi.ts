@@ -37,7 +37,7 @@ export interface CreateCarDto {
     alter_imei?: string
 }
 
-export const createCar = async (createCarDto: CreateCarDto) => (await axios.post('/create_car', null, {params: createCarDto})).data
+export const createCar = async (createCarDto: CreateCarDto) => (await adminInstance.post('/create_car', null, {params: createCarDto})).data
 
 export type SaveCarDto = CreateCarDto & { car_id: string }
 export const saveCar = async (saveCarDto: SaveCarDto) => (await adminInstance.post('/save_car', null, {params: saveCarDto})).data

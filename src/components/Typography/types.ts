@@ -1,1 +1,2 @@
-export type TypographyColors = 'white' | 'main'
+export type TypographyColors = 'white' | 'main' | 'error'
+export type TypographyFonts = 'main' | 'sm'
