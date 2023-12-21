@@ -42,19 +42,19 @@ const ControlPointForm: FC<CarFormProps> = ({points, cars, handleCreatePoint}) =
             src={checkIcon}/></IconButton>} withoutDivider>
             <td>
                 <Controller control={control} name={'car_id'}
-                            render={({field}) => <Select value={getCarValueOption(field.value ?? null)}
+                            render={({field}) => <Select placeholder={'Машина'} value={getCarValueOption(field.value ?? null)}
                                                          options={carsOptions}
                                                          onChange={o => field.onChange(o?.value)}/>}/>
             </td>
             <td>
                 <Controller control={control} name={'point_id'}
-                            render={({field}) => <Select value={getPointValueOption(field.value ?? null)}
+                            render={({field}) => <Select placeholder={'Точка'} value={getPointValueOption(field.value ?? null)}
                                                          options={pointsOptions}
                                                          onChange={o => field.onChange(o?.value)}/>}/>
             </td>
             <td>
                 <Controller control={control} name={'event'}
-                            render={({field}) => <Select value={getActionValueOption(field.value ?? null)}
+                            render={({field}) => <Select placeholder={'Событие'} value={getActionValueOption(field.value ?? null)}
                                                          options={actionOptions}
                                                          onChange={o => field.onChange(o?.value)}/>}/>
             </td>

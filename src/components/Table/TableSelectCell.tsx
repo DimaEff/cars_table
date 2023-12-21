@@ -1,25 +1,11 @@
 import {FC} from 'react';
-import Select, {StylesConfig} from "react-select";
+import Select from "react-select";
 import {css} from "@emotion/css";
 
 export interface Option {
     value: string,
     label: string
 }
-
-const customSelectStyles: StylesConfig = {
-    control: (provided, state) => ({
-        ...provided,
-        border: 'none',
-        borderBottom: '1px solid #ccc',
-        borderRadius: 0,
-        boxShadow: state.isFocused ? '0 0 0 2px rgba(0, 123, 255, 0.6)' : 'none',
-    }),
-    dropdownIndicator: (provided) => ({
-        ...provided,
-        border: 'none',
-    }),
-};
 
 interface TableSelectCellProps {
     value: Option | null
@@ -34,7 +20,7 @@ const TableSelectCell: FC<TableSelectCellProps> = ({value, options, handleChange
         `}>
             {/* @ts-ignore */}
             <Select value={value} options={options} onChange={handleChangeValue} styles={{
-                // @ts-ignore
+                // @ts-expect-error
                 control: (provided, state) => ({
                     ...provided,
                     border: 'none',

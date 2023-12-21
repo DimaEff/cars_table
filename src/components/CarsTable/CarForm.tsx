@@ -45,7 +45,7 @@ const CarForm: FC<CarFormProps> = ({icons, handleCreateCar}) => {
                     control={control}
                     name={'icon'}
                     render={
-                        ({field}) => <Select className={css`
+                        ({field}) => <Select placeholder={'Иконка'} className={css`
                             width: 150px;
                         `} ref={field.ref} value={getSelectValue(field.value) ?? null}
                                                                   onChange={o => field.onChange(o?.value)}
