@@ -52,7 +52,7 @@ const EventsTable: FC<EventsTableProps> = ({events, cars, points, typeOfEvents})
                                typeOfEvents={typeOfEvents}/>}
                 </tbody>
             </Table>
-            <IconButton onClick={() => setCreatingMode(true)}><img src={addIcon} className={css`
+            <IconButton onClick={() => setCreatingMode(m => !m)}><img src={addIcon} className={css`
                 width: 32px;
             `}/></IconButton>
         </div>

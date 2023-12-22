@@ -1,9 +1,8 @@
-import {FC, useState} from 'react';
+import {FC} from 'react';
 import {CompanyDto} from "../../api/models/CompanyDto.ts";
 import {css} from "@emotion/css";
 import InfoSlot from "./InfoSlot.tsx";
 import {IconButton} from "../Button";
-import editIcon from '../../assets/editIcon.svg'
 import checkIcon from '../../assets/checkIcon.svg'
 import copyIcon from '../../assets/copyIcon.svg'
 import logoutIcon from '../../assets/logoutIcon.svg'
@@ -18,7 +17,6 @@ import {
     saveCompanyName
 } from "../../api/adminApi.ts";
 import Typography from "../Typography/Typography.tsx";
-import {Input} from "../Input";
 import {useQuery} from "react-query";
 import {QUERIES_KEYS} from "../../queriesKeys.ts";
 
@@ -27,8 +25,6 @@ interface CompanyProps {
 }
 
 const Company: FC<CompanyProps> = ({company}) => {
-    const [editMode, setEditMode] = useState(false)
-    const [companyName, setCompanyName] = useState(company.name)
 
     const {refetch} = useQuery(QUERIES_KEYS.GET_SETTINGS, {
         refetchOnWindowFocus: false,
@@ -36,7 +32,7 @@ const Company: FC<CompanyProps> = ({company}) => {
     })
 
     const handleSaveCompany = async () => {
-        await saveCompanyName({company_name: companyName})
+        await saveCompanyName({company_name: company.name})
         await refetch()
     }
 

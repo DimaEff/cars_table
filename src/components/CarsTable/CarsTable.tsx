@@ -46,7 +46,7 @@ const CarsTable: FC<CarsTableProps> = ({cars, icons}) => {
                 {creatingMode && <CarForm icons={icons} handleCreateCar={handleCreateCar}/>}
                 </tbody>
             </Table>
-            <IconButton onClick={() => setCreatingMode(true)}><img src={addIcon} className={css`
+            <IconButton onClick={() => setCreatingMode(m => !m)}><img src={addIcon} className={css`
                 width: 32px;
             `}/></IconButton>
         </div>

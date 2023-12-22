@@ -43,7 +43,7 @@ const ControlPointsTable: FC<ControlPointsTableProps> = ({points}) => {
                 {creatingMode && <ControlPointForm handleCreatePoint={handleCreatePoint}/>}
                 </tbody>
             </Table>
-            <IconButton onClick={() => setCreatingMode(true)}><img src={addIcon} className={css`
+            <IconButton onClick={() => setCreatingMode(m => !m)}><img src={addIcon} className={css`
                 width: 32px;
             `}/></IconButton>
         </div>
